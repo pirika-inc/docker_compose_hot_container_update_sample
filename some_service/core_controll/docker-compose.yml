@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  service1:
+    container_name: "service1"
+    build:
+      context: ./service1
+      dockerfile: Dockerfile
+    networks:
+      - internal
+
+  service2:
+    container_name: "service2"
+    build:
+      context: ./service2
+      dockerfile: Dockerfile
+    networks:
+      - internal
+
+  service3:
+    container_name: "service3"
+    build:
+      context: ./service3
+      dockerfile: Dockerfile
+    networks:
+      - internal
+
+networks:
+  internal:
+    external:
+      name: some_service_internal

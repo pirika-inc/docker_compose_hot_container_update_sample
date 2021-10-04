@@ -1,0 +1,10 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Docker compose partial update test API",
+    "description": "",
+    "version": "0.1.0"
+  },
+  "paths": {},
+  "components": {}
+}

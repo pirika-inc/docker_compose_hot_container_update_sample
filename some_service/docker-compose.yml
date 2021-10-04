@@ -1,0 +1,39 @@
+version: '3.4'
+
+services:
+  api:
+    container_name: "api"
+    environment:
+      - URL_CORE_CONTROLL=http://core_controll:8001
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    restart: always
+    tty: true
+    ports:
+      - "8000:8000"
+    networks:
+      - api
+
+  core_controll:
+    container_name: "core_controll"
+    environment:
+      - URL_SERVICE1=http://service1:8002
+      - URL_SERVICE2=http://service2:8003
+      - URL_SERVICE3=http://service3:8004
+    build:
+      context: ./core_controll
+      dockerfile: Dockerfile
+    depends_on:
+      - service1
+      - service2
+      - service3
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - api
+      - internal
+
+networks:
+  api:
+  internal:
